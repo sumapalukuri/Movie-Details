@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   errorOccured = false;
   errorOccuredTimes = 0;
   pageIndex: number = 0;;
+  searchValue = '';
   constructor(private dashboardService: DashboardService,
     public dialog: MatDialog,
     private toastr: ToastrService) { }
@@ -50,6 +51,7 @@ export class DashboardComponent implements OnInit {
       if (response) {
         this.pageNo = this.pageIndex;
         this.isLoading = false;
+        this.searchValue = '';
         this.movieResponse = response;
         this.moviesList = response.results;
         this.length = this.movieResponse.count;
@@ -65,6 +67,7 @@ export class DashboardComponent implements OnInit {
           }
         })
         this.errorOccuredTimes = 0;
+        this.errorOccured = false;
         this.serachResult()
       }
     }, (error) => {
@@ -108,6 +111,7 @@ export class DashboardComponent implements OnInit {
    */
   onFilter(event: any) {
     const value = event.target.value;
+    this.searchValue = value;
     this.subjectValue.next(value)
   }
 /**

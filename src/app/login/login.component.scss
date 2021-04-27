@@ -9,7 +9,7 @@
   .login-wrap{
     width:100%;
     margin:auto;
-    margin-top: 25%;
+    margin-top: 8%;
     max-width:525px;
     min-height:390px;
     position:relative;
@@ -46,7 +46,7 @@
     border-bottom:2px solid transparent;
     width: 100%;
     text-align: center;
-    color: rgb(248, 19, 126);
+    color:#fff
   }
   .login-html .sign-in:checked + .tab,
   .login-html .sign-up:checked + .tab{

@@ -1,20 +1,23 @@
-    <div class="spinner" *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
-    </div>
-    <div>
-        <form action="">
-            <input type="search" (change)="onFilter($event)" placeholder="search...">
-            <i class="fa fa-search">
-                <mat-icon>search</mat-icon>
-            </i>
-        </form>
-        <button matTooltip="Refresh" mat-icon-button (click)="refresh()"
-            *ngIf="errorOccured && errorOccuredTimes <=2 && errorOccuredTimes > 0">
-            <mat-icon>refresh</mat-icon>Refresh
-        </button>
+<div class="spinner" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="content-container">
+    <form action="" *ngIf="(!errorOccured || moviesList.length > 0) && !isLoading">
+        <input type="search" (change)="onFilter($event)" placeholder="search..." [(ngModel)]="searchValue" name="searchData">
+        <i class="fa fa-search">
+            <mat-icon>search</mat-icon>
+        </i>
+    </form>
+    <div class="clear-space">&nbsp;</div>
+    <button matTooltip="Refresh" mat-icon-button (click)="refresh()" class="refresh"
+        *ngIf="errorOccured && errorOccuredTimes <=2 && errorOccuredTimes > 0">
+        <mat-icon>refresh</mat-icon>Refresh
+    </button>
+    <div class="clear-space">&nbsp;</div>
+    <div class="content-wrapper">
         <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
             <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let movie of moviesList">
-                <mat-card class="mat-elevation-z4" (click)="onClickOfCard(movie)">
+                <mat-card class="mat-elevation-z4 content-main" (click)="onClickOfCard(movie)">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"><img class="image" src="{{movie.imageUrl}}"
                                 alt="Photo"></div>
@@ -27,15 +30,18 @@
                             {{movie.shortDescription}}
                         </p>
                     </mat-card-content>
-                    <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+                    <div class="content-footer" fxLayout="row wrap">
                         <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let genre of movie.genresList">
                             <button mat-raised-button color="accent">{{genre}}</button>
                         </div>
                     </div>
+                    <div class="clear-space">&nbsp;</div>
                 </mat-card>
             </div>
         </div>
-        <mat-paginator [pageSize]="pageSize" [pageIndex]="pageNo" [length]="length" [pageSizeOptions]="[10]"
-            (page)="pageEvents($event)">
-        </mat-paginator>
     </div>
+    <div class="clear-space">&nbsp;</div>
+    <mat-paginator [pageSize]="pageSize" [pageIndex]="pageNo" [length]="length" [pageSizeOptions]="[10]"
+        (page)="pageEvents($event)">
+    </mat-paginator>
+</div>
