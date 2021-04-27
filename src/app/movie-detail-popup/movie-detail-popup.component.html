@@ -1,0 +1,17 @@
+<mat-card-header>
+    <div mat-card-avatar class="example-header-image"><img class="image" src="{{data?.imageUrl}}"
+            alt="Photo"></div>
+    <mat-card-title><span style="color: rgb(230, 33, 131)">{{data?.title}}</span></mat-card-title>
+    <span class="delete-user">
+    </span>
+</mat-card-header>
+<mat-card-content>
+    <p class="movie-description">
+        {{data?.description}}
+    </p>
+</mat-card-content>
+<div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let genre of data?.genresList">
+        <button mat-raised-button color="primary" >{{genre}}</button>
+    </div>
+</div>
